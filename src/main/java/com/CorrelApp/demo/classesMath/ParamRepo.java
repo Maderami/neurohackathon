@@ -6,22 +6,22 @@ import java.util.List;
 
 public class ParamRepo {
     @Getter
-    private static List<ParambyStatistic> parambyStatisticList = new ArrayList<>();
+    private static List<ParamByStatistic> paramByStatisticList = new ArrayList<>();
 
-    public static void Add(ParambyStatistic parambyStatistic) { parambyStatisticList.add(parambyStatistic); }
+    public static void add(ParamByStatistic parambyStatistic) { paramByStatisticList.add(parambyStatistic); }
 
-    public static ParambyStatistic findById(long id) {
-        for (ParambyStatistic parambyStatistic : parambyStatisticList)
+    public static ParamByStatistic getById(long id) {
+        for (ParamByStatistic parambyStatistic : paramByStatisticList)
             if (parambyStatistic.getId() == id)
                 return parambyStatistic;
         return null;
     }
 
-    public static List<ParambyStatistic> getParambyStatisticList() {
-        return parambyStatisticList;
+    public static List<ParamByStatistic> getParamByStatisticList() {
+        return paramByStatisticList;
     }
 
-    public static void setParambyStatisticList(List<ParambyStatistic> parambyStatisticList) {
-        ParamRepo.parambyStatisticList = parambyStatisticList;
+    public static void setParamByStatisticList(List<ParamByStatistic> paramByStatisticList) {
+        ParamRepo.paramByStatisticList = paramByStatisticList;
     }
 }

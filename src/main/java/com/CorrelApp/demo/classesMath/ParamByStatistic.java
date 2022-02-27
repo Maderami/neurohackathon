@@ -3,7 +3,7 @@ package com.CorrelApp.demo.classesMath;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ParambyStatistic {
+public class ParamByStatistic {
     @Getter
     @Setter
     private long id;
@@ -11,7 +11,7 @@ public class ParambyStatistic {
     @Setter
     private String name;
 
-    public ParambyStatistic(long id, String name) {
+    public ParamByStatistic(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -32,6 +32,6 @@ public class ParambyStatistic {
         this.name = name;
     }
 
-    public ParambyStatistic() {
+    public ParamByStatistic() {
     }
 }

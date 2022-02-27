@@ -24,7 +24,7 @@ public class DataByRegion {
         this.value = value;
     }
 
-    public long getparamid() {
+    public long getParamId() {
         return paramId;
     }
 

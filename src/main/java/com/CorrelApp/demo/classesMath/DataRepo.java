@@ -1,6 +1,5 @@
 package com.CorrelApp.demo.classesMath;
 
-import lombok.Data;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +8,11 @@ public class DataRepo {
     @Getter
     private static List<DataByRegion> dataList = new ArrayList<>();
 
-    public static void Add(DataByRegion data) { dataList.add(data); }
+    public static void add(DataByRegion data) { dataList.add(data); }
 
     public static DataByRegion findByParamId(long paramId) {
         for (DataByRegion data : dataList)
-            if (data.getparamid() == paramId)
+            if (data.getParamId() == paramId)
                 return data;
         return null;
     }

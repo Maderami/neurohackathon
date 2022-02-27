@@ -16,13 +16,24 @@ public class SuperiorData {
     @Setter
     private List<SpaceValue> specValueList;
 
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public SuperiorData(String paramName, String regionName) {
         this.paramName = paramName;
         this.regionName = regionName;
         specValueList = new ArrayList<>();
+        type = defineType();
     }
 
-    public void Add(SpaceValue specValue) { specValueList.add(specValue); }
+    public void add(SpaceValue specValue) { specValueList.add(specValue); }
 
     public String getParamName() {
         return paramName;
@@ -49,5 +60,13 @@ public class SuperiorData {
     }
 
     public SuperiorData() {
+    }
+    private String defineType() {
+        for (String string :paramName.split(" "))
+            if (string == "региональных" |
+                    string == "США" |
+                    string == "инновации")
+                return "Государственная власть";
+        return "Качество жизни людей";
     }
 }

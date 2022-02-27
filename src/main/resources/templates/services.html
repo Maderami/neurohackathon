@@ -18,9 +18,6 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-
-
-
 <header class="fixed-top p-auto">
     <div class="container">
         <nav class="navbar navbar-expand p-0">
@@ -40,7 +37,11 @@
                             Расчет
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="support">
+                            Анализ показателей
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="menu-icon d-lg-none">
@@ -63,67 +64,48 @@
     <div class="container">
         <h2>Расчет данных по показателям</h2>
 
-        <form action="/services" method="post">
-        <h5>Показатели государственного ресурсного обекспечения</h5>
-        <h5>Показатели качества жизни</h5>
-
-        <h5>Выбор файла регионов (csv)</h5>
-        <div class="form-file">
-            <input type="file" class="form-file-input" id="PathRegin" th:name="PathRegin">
-
-        </div>
-        <h5>Выбор файла параметров (csv)</h5>
-        <div class="form-file">
-            <input type="file" class="form-file-input" id="typeParam" th:name="typeParam">
-        </div>
-        <h5>Выбор файла данных (csv)</h5>
-        <div class="form-file">
-            <input type="file" class="form-file-input" id="FileData" th:name="FileData">
-
-        </div>
-        <button type="submit" class="btn btn-success">Выполнить</button>
-       </form>
-        <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row">
-                    <div class="container-fluid d-flex justify-content-center">
-                        <div class="col-sm-8 col-md-6">
-                            <div class="card">
-                                <div class="card-header">Bar chart</div>
-                                <div class="card-body" style="height: 420px">
-                                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                        </div>
-                                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                        </div>
-                                    </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--        <div class="page-content page-container" id="page-content">-->
+<!--            <div class="padding">-->
+<!--                <div class="row">-->
+<!--                    <div class="container-fluid d-flex justify-content-center">-->
+<!--                        <div class="col-sm-8 col-md-6">-->
+<!--                            <div class="card">-->
+<!--                                <div class="card-header">Bar chart</div>-->
+<!--                                <div class="card-body" style="height: 420px">-->
+<!--                                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">-->
+<!--                                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">-->
+<!--                                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">-->
+<!--                                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>-->
+<!--                                        </div>-->
+<!--                                    </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="card-body table-responsive p-0">
             <table class="table table-striped table-valign-middle">
-                <thead >
-                <th>
-                    <td>Название параметра/ Название региона</td>
+                <thead  class="w-100">
+                <tr class="w-100">
+                    <td>Название параметра</td>
+                    <td>Название региона</td>
                     <td>Год</td>
                     <td>Значение показателя</td>
-                </th>
+                </tr>
                 </thead>
                 <tbody>
-                <tr    th:each="lee : ${SuperiorData} " >
-
-                    <td><a class="btn btn-warning" th:text="${lee.getParamName()}"></a></td>
-                    <td><a class="btn btn-warning" th:text="${lee.getRegionName()}"></a></td>
-                    <td th:each="led : ${lee.getSpecValueList()}"><a class="btn btn-warning" th:text="${lee.getSpecValueList().}"></a></td>
-                    <td th:each="led : ${lee.getSpecValueList()}"><a class="btn btn-warning" th:text="${led.getValue()}"></a></td>
-
-                </tr>
+                <h1 th:each="sp : ${SuperiorData}" class="p-0 m-0">
+                    <tr th:each="l : ${sp.getSpecValueList()}">
+                        <td class="p-0 m-0"><a class="nav-item p-0 m-0" th:text="${sp.getParamName()}" style="white-space: pre-wrap; width: 70%;"></a></td>
+                        <td class="p-0 m-0"><a class="nav-item p-0 m-0" th:text="${sp.getRegionName()}" style="white-space: pre-wrap; width: 70%;"></a></td>
+                        <td class="p-0 m-4"><a class="nav-item" th:text="${l.getYear()}"></a></td>
+                        <td class="p-0 m-4"><a class="nav-item" th:text="${l.getValue()}"></a></td>
+                    </tr>
+                </h1>
 
                 </tbody>
             </table>
@@ -187,43 +169,43 @@
 <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
 <script src="js/script.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-<script>
-    $(document).ready(function() {
-        var ctx = $("#chart-line");
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        var ctx = $("#chart-line");-->
 
-        var myLineChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
-                datasets: [{
-                    data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                    label: "Africa",
-                    borderColor: "#458af7",
-                    backgroundColor: '#458af7',
-                    fill: false
-                }, {
-                    data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-                    label: "Asia",
-                    borderColor: "#8e5ea2",
-                    fill: true,
-                    backgroundColor: '#8e5ea2'
-                }, {
-                    data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-                    label: "Europe",
-                    borderColor: "#3cba9f",
-                    fill: false,
-                    backgroundColor: '#3cba9f'
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'World population per region (in millions)'
-                }
-            }
-        });
-    });
-</script>
+<!--        var myLineChart = new Chart(ctx, {-->
+<!--            type: 'bar',-->
+<!--            data: {-->
+<!--                labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],-->
+<!--                datasets: [{-->
+<!--                    data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],-->
+<!--                    label: "Africa",-->
+<!--                    borderColor: "#458af7",-->
+<!--                    backgroundColor: '#458af7',-->
+<!--                    fill: false-->
+<!--                }, {-->
+<!--                    data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],-->
+<!--                    label: "Asia",-->
+<!--                    borderColor: "#8e5ea2",-->
+<!--                    fill: true,-->
+<!--                    backgroundColor: '#8e5ea2'-->
+<!--                }, {-->
+<!--                    data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],-->
+<!--                    label: "Europe",-->
+<!--                    borderColor: "#3cba9f",-->
+<!--                    fill: false,-->
+<!--                    backgroundColor: '#3cba9f'-->
+<!--                }]-->
+<!--            },-->
+<!--            options: {-->
+<!--                title: {-->
+<!--                    display: true,-->
+<!--                    text: 'World population per region (in millions)'-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 
 </html>

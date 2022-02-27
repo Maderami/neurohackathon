@@ -23,7 +23,7 @@ public class BigRegion {
         regionList = new ArrayList<>();
     }
 
-    public void Add(Region region) { regionList.add(region); }
+    public void add(Region region) { regionList.add(region); }
 
     public Region findById(long id) {
         for (Region region : regionList)
